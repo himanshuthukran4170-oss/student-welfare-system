@@ -32,7 +32,13 @@ function Login() {
       navigate("/dashboard")
 
     } catch (error) {
-      alert(error.response.data.message)
+      console.log(error)
+
+alert(
+  error?.response?.data?.message ||
+  error.message ||
+  "Something went wrong"
+)
     }
   }
 
