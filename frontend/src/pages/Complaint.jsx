@@ -23,7 +23,7 @@ function Complaint() {
       const token = localStorage.getItem("token")
 
       const res = await API.post(
-        "/complaints/create",
+        "/api/complaints/create",
         formData,
         {
           headers: {

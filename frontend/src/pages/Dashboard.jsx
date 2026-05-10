@@ -18,7 +18,7 @@ function Dashboard() {
       const token = localStorage.getItem("token")
 
       const res = await API.get(
-        "/complaints/my",
+        "/api/complaints/my",
         {
           headers: {
             Authorization: `Bearer ${token}`
