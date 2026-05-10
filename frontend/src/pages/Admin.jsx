@@ -6,6 +6,12 @@ function Admin() {
 
   const [complaints, setComplaints] = useState([])
 
+  const user = JSON.parse(localStorage.getItem("user"))
+
+  if (user?.role !== "admin") {
+    return <h1>Access Denied</h1>
+  }
+
   useEffect(() => {
 
     fetchComplaints()
@@ -19,28 +25,33 @@ function Admin() {
       const token = localStorage.getItem("token")
 
       const res = await API.get(
-        "/api/complaints",
+        "/api/complaints/all",
         {
           headers: {
             Authorization: `Bearer ${token}`
           }
         }
       )
+
       console.log(res.data)
+
       setComplaints(res.data.complaints)
 
     } catch (error) {
+
       console.log(error)
+
     }
   }
+
   const updateStatus = async (id, status) => {
 
     try {
-  
+
       const token = localStorage.getItem("token")
-  
+
       await API.put(
-        `/api/complaints/${id}`,
+        `/api/complaints/update/${id}`,
         { status },
         {
           headers: {
@@ -48,13 +59,16 @@ function Admin() {
           }
         }
       )
-  
+
       fetchComplaints()
-  
+
     } catch (error) {
+
       console.log(error)
+
     }
   }
+
   return (
     <>
       <Navbar />
@@ -84,7 +98,10 @@ function Admin() {
               <select
                 value={complaint.status}
                 onChange={(e) =>
-                  updateStatus(complaint._id, e.target.value)
+                  updateStatus(
+                    complaint._id,
+                    e.target.value
+                  )
                 }
               >
 
@@ -103,8 +120,7 @@ function Admin() {
               </select>
 
               <p>
-                Student:
-                {" "}
+                Student:{" "}
                 {complaint.student?.name}
               </p>
 
