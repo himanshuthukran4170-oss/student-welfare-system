@@ -24,7 +24,7 @@ function Register() {
 
     try {
 
-      const res = await API.post("/auth/register", formData)
+      const res = await API.post("/api/auth/register", formData)
 
       alert(res.data.message)
 
