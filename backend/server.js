@@ -38,5 +38,5 @@ app.use("/api/complaints", complaintRoutes);
 
 // server start
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`hot reloding is working `);
 });

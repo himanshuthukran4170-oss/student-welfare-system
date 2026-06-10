@@ -9,7 +9,7 @@ function Admin() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   if (user?.role !== "admin") {
-    return <h1>Access Denied</h1>
+    return <h1>Access is Denied</h1>
   }
 
   useEffect(() => {
