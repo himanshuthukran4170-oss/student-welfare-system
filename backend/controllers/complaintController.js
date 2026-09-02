@@ -8,13 +8,7 @@ const createComplaint = async (req,res) => {
 
         const {  title, category,description } = req.body;
 
-        const complaint = await Complaint.create({
-            title,
-            student:req.user.id,
-            category,
-            description
-
-        });
+       
 
         res.status(201).json({
             success:true,
@@ -34,13 +28,6 @@ const createComplaint = async (req,res) => {
 
 const getComplaintStats = async (req, res) => {
 
-    try {
-
-        const totalComplaints = await Complaint.countDocuments();
-
-        const pendingComplaints = await Complaint.countDocuments({
-            status: "Pending"
-        });
 
         const resolvedComplaints = await Complaint.countDocuments({
             status: "Resolved"
